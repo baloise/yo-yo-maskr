@@ -1,2 +1,1 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/
+FROM python:3.13-bookworm
