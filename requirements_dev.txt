@@ -1,4 +1,6 @@
 fastapi
+ipykernel
+jupyter
 langchain-core
 langchain-ollama
 ollama
