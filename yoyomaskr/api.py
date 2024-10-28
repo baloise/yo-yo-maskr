@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from yoyomaskr.llm import llm_find_entities
 
 app = FastAPI()
 
@@ -12,6 +13,7 @@ async def self():
 
 @app.post("/")
 async def mask(request: MaskRequest):
-    return {"masked_text": request.text, "analysis": []}
+    entities = llm_find_entities(request.text)
+    return {"original_text": request.text, "llm_entities": entities}
 
 # curl -X POST "http://localhost:8000" -H "Content-Type: application/json" -d '{"name": "YoYo"}'
