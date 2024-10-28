@@ -1,18 +1,20 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from yoyomaskr import llm_find_entities
 
 app = FastAPI()
 
 # Define a Pydantic model for the input data
 class ValueRequest(BaseModel):
-    name: str
+    text: str
 
 @app.get("/")
-async def generic_greeter():
+async def hello_world():
     return {"message": "Hello, World!"}
 
 @app.post("/")
-async def named_greeter(request: ValueRequest):
-    return {"name": request.name, "message": f'Hello, {request.name}'}
+async def llm_entities(request: ValueRequest):
+    entities = llm_find_entities(request.text)
+    return {"original_text": request.text, "llm_entities": entities}
 
-# curl -X POST "http://localhost:8000" -H "Content-Type: application/json" -d '{"name": "YoYo"}'
+# curl -X POST "http://localhost:8000" -H "Content-Type: application/json" -d '{"text": "text"}'
