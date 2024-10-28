@@ -9,4 +9,4 @@ RUN "./install_dependencies.sh"
 
 EXPOSE 8000
 
-CMD ["fastapi", "run", "yoyomaskr/main.py"]
+CMD ["fastapi", "run", "yoyomaskr/api.py"]
