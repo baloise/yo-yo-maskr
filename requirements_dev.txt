@@ -1,9 +1,0 @@
-fastapi
-ipykernel
-jupyter
-langchain-core
-langchain-ollama
-ollama
-rapidfuzz
-regex
-uvicorn
