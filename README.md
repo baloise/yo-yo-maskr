@@ -1,2 +1,2 @@
 # yo-yo-maskr
-Reversible anonymisation service for us all
+A reversible anonymisation service for us all
