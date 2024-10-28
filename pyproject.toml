@@ -1,0 +1,21 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "yoyomaskr"
+version = "0.0.1"
+description = "Reversible anonymisation service for us all"
+license = "Apache 2.0"
+authors = ["AI Circle <aicommunity@groups.baloise.com>"]
+
+[tool.poetry.dependencies]
+python = "^3"
+"fastapi[standard]"= "^0"
+langchain-core= "^0"
+langchain-ollama= "^0"
+ollama= "^0"
+rapidfuzz= "^3"
+regex= "^2024"
+python-dotenv = "^1"
+mypy = "^1"
