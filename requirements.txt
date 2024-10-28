@@ -1,0 +1,7 @@
+fastapi
+langchain-core
+langchain-ollama
+ollama
+rapidfuzz
+regex
+uvicorn
