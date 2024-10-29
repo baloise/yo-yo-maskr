@@ -1,8 +1,0 @@
-fastapi[standard]
-langchain-core
-langchain-ollama
-ollama
-python-dotenv
-rapidfuzz
-regex
-uvicorn
