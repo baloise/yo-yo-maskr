@@ -24,7 +24,9 @@ def llm_find_entities(text, temperature=0, template=TEMPLATE, raw=False):
     :return:
     """
     prompt = ChatPromptTemplate.from_template(template)
-    model = OllamaLLM(model=OLLAMA_MODEL, temperature=temperature, base_url=OLLAMA_BASE_URL)
+
+
+    model = OllamaLLM(model=OLLAMA_MODEL, temperature=temperature, base_url=OLLAMA_BASE_URL, client_kwargs={"verify": os.getenv("HTTPX_CLIENT_VERIFY", True)})
     chain = prompt | model
     result = chain.invoke({"text": text})
     if raw:

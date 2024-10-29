@@ -5,14 +5,15 @@ LABEL maintainer="culmat, trichie, robbizbal" \
       version="0.1.0"
 
 ENV OLLAMA_BASE_URL=http://localhost:11434 \
-    OLLAMA_MODEL=llama3.2:latest
+    OLLAMA_MODEL=llama3.2:latest \
+    HTTPX_CLIENT_VERIFY=
 
 COPY . /app/
 
 WORKDIR /app
 
-RUN "./install_dependencies.sh"
+RUN "./setup.sh"
 
 EXPOSE 8000
 
-CMD ["fastapi", "run", "src/api.py"]
+CMD ["make", "run"]
