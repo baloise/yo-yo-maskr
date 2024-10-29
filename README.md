@@ -11,5 +11,5 @@ python3 -m venv .venv
 # Run
 
 ```
-fastapi run yoyomaskr/api.py
+fastapi run src/api.py
 ```

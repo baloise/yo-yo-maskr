@@ -4,6 +4,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "yoyomaskr"
+packages = [
+    { include = "src" }
+]
 version = "0.0.1"
 description = "Reversible anonymisation service for us all"
 license = "Apache 2.0"
@@ -19,3 +22,13 @@ rapidfuzz= "^3"
 regex= "^2024"
 python-dotenv = "^1"
 mypy = "^1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests"
+]
