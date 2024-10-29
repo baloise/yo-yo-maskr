@@ -54,4 +54,4 @@ test: $(INSTALL_STAMP)
 
 # Run target to execute the FastAPI application
 run: $(INSTALL_STAMP)
-	$(POETRY) run fastapi run app.py
+	$(POETRY) run fastapi run src/app.py
