@@ -14,10 +14,8 @@ authors = ["AI Circle <aicommunity@groups.baloise.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-"fastapi"= "^0"
-langchain-core= "^0"
+fastapi= {extras = ["standard"], version = "^0"}
 langchain-ollama= "^0"
-ollama= "^0"
 rapidfuzz= "^3"
 regex= "^2024"
 python-dotenv = "^1"
@@ -30,6 +28,14 @@ ruff = "^0.7"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
+python_classes = ["Test"]
+python_functions = ["test_", "it_", "and_", "but_", "they_"]
+python_files = ["test_*.py"]
 testpaths = [
     "tests"
 ]
+filterwarnings = [
+    "error",
+    'ignore:ast.* is deprecated:DeprecationWarning',
+]
+

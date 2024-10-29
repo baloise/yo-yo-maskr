@@ -18,7 +18,7 @@ RUN apk add --no-cache --update \
     bash \
     && rm -rf ~/.cache/* /usr/local/share/man /tmp/*
 
-RUN python3 -m pip install pipx poetry "fastapi[standard]" --break-system-packages \
+RUN python3 -m pip install pipx --break-system-packages \
     && python3 -m pipx ensurepath \
     && python3 -m pipx completions 
 
