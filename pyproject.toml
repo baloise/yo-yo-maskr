@@ -19,3 +19,13 @@ rapidfuzz= "^3"
 regex= "^2024"
 python-dotenv = "^1"
 mypy = "^1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests"
+]
