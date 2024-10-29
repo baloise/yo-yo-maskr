@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from yoyomaskr.llm import llm_find_entities
+from src.llm import llm_find_entities
 
 app = FastAPI()
 
