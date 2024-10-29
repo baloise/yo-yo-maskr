@@ -28,6 +28,9 @@ COPY . /app/
 # set workdir
 WORKDIR /app
 
+# set script permissions
+RUN chmod +x entrypoint.sh setup.sh
+
 # run app setup script
 RUN "./setup.sh"
 
@@ -35,4 +38,4 @@ RUN "./setup.sh"
 EXPOSE 8000
 
 # run app
-CMD ["/usr/bin/make", "run"]
+ENTRYPOINT ["/app/entrypoint.sh"]
