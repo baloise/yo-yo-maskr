@@ -1,4 +1,0 @@
-# Use the official Ollama base image
-FROM ollama/ollama
-
-# docker run --rm --name yoyomaskr_ollama -d -v /Users/thomas/.ollama:/root/.ollama -p 11434:11434 yoyomaskr_ollama

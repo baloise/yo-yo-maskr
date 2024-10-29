@@ -13,22 +13,31 @@ license = "Apache 2.0"
 authors = ["AI Circle <aicommunity@groups.baloise.com>"]
 
 [tool.poetry.dependencies]
-python = "^3"
-"fastapi[standard]"= "^0"
-langchain-core= "^0"
+python = "^3.12"
+fastapi= {extras = ["standard"], version = "^0"}
 langchain-ollama= "^0"
-ollama= "^0"
 rapidfuzz= "^3"
 regex= "^2024"
 python-dotenv = "^1"
 mypy = "^1"
+setuptools = "^0"
+gunicorn = "^0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
+ruff = "^0.7"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
+python_classes = ["Test"]
+python_functions = ["test_", "it_", "and_", "but_", "they_"]
+python_files = ["test_*.py"]
 testpaths = [
     "tests"
 ]
+filterwarnings = [
+    "error",
+    'ignore:ast.* is deprecated:DeprecationWarning',
+]
+

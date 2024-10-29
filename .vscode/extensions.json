@@ -1,4 +1,9 @@
 {
-    "recommendations": ["matangover.mypy"]
+    "recommendations": [
+      "matangover.mypy",
+      "pamaron.pytest-runner",
+      "tamasfe.even-better-toml",
+      "ms-vscode.makefile-tools"
+    ]
   }
   

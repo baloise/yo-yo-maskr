@@ -1,7 +1,7 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
-
+from .env import *
 
 TEMPLATE = """
 Context: You anonymize texts in a way that can be reverted and return nothing but a json dictionary that can be parsed automatically.
@@ -14,7 +14,7 @@ Example output: {{"#person_1#": ["Tony Stark", "Tony"], "#person_2#": ["Peter Pa
 Text to anonymize: {text}
 """
 
-def llm_find_entities(text, model='gemma2', temperature=0, template=TEMPLATE, raw=False):
+def llm_find_entities(text, temperature=0, template=TEMPLATE, raw=False):
     """
     :param text:
     :param model:
@@ -24,7 +24,9 @@ def llm_find_entities(text, model='gemma2', temperature=0, template=TEMPLATE, ra
     :return:
     """
     prompt = ChatPromptTemplate.from_template(template)
-    model = OllamaLLM(model=model, temperature=temperature)
+
+
+    model = OllamaLLM(model=OLLAMA_MODEL, temperature=temperature, base_url=OLLAMA_BASE_URL, client_kwargs={"verify": os.getenv("HTTPX_CLIENT_VERIFY", True)})
     chain = prompt | model
     result = chain.invoke({"text": text})
     if raw:
