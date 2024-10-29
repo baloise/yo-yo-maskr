@@ -18,7 +18,8 @@ help:
 	@echo " lint      - Run the code linters"
 	@echo " format    - Reformat code"
 	@echo " test      - Run all the tests"
-	@echo " run       - Run the FastAPI application"
+	@echo " dev       - Run in dev mode with auto reload"
+	@echo " run       - Run in prod mode with 4 workers"
 	@echo ""
 
 # Install target to set up the environment with Poetry
@@ -52,6 +53,10 @@ format: $(INSTALL_STAMP)
 test: $(INSTALL_STAMP)
 	$(POETRY) run pytest .
 
-# Run target to execute the FastAPI application
+# Run target to execute the application for production
+dev: $(INSTALL_STAMP)
+	$(POETRY) run uvicorn src.app:app --reload
+
+# Run target to execute the application for production
 run: $(INSTALL_STAMP)
-	$(POETRY) run fastapi run src/app.py
+	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
