@@ -20,6 +20,8 @@ rapidfuzz= "^3"
 regex= "^2024"
 python-dotenv = "^1"
 mypy = "^1"
+setuptools = "^0"
+gunicorn = "^0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"

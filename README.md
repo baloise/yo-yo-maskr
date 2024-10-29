@@ -4,7 +4,7 @@ A reversible anonymisation service for us all
 # Setup development environment
 
 ```
-./install_dependencies.sh
+./setup.sh
 ```
 # Run
 

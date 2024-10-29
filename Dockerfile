@@ -35,4 +35,4 @@ RUN "./setup.sh"
 EXPOSE 8000
 
 # run app
-CMD ["make", "run"]
+CMD ["/usr/bin/make", "run"]

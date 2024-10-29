@@ -6,7 +6,7 @@ INSTALL_STAMP := .install.stamp
 .DEFAULT_GOAL := help
 
 # Declare phony targets
-.PHONY: help install clean lint format test cleaner run
+.PHONY: help install clean lint format test cleaner run dev
 
 # Help target to display available commands
 help:
@@ -55,8 +55,11 @@ test: $(INSTALL_STAMP)
 
 # Run target to execute the application for production
 dev: $(INSTALL_STAMP)
-	$(POETRY) run uvicorn src.app:app --reload
+	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
 
 # Run target to execute the application for production
 run: $(INSTALL_STAMP)
-	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
+#	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
+	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+
+	
