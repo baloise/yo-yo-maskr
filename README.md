@@ -11,3 +11,8 @@ A reversible anonymisation service for us all
 ```
 make run
 ```
+# Trouble shooting
+
+```
+echo -n 'db' | gnome-keyring-daemon --unlock
+```
