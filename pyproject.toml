@@ -4,6 +4,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "yoyomaskr"
+packages = [
+    { include = "src" }
+]
 version = "0.0.1"
 description = "Reversible anonymisation service for us all"
 license = "Apache 2.0"
