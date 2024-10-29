@@ -9,7 +9,7 @@ router = fastapi.APIRouter()
 class MaskRequest(BaseModel):
     text: str
 
-@router.post("/mask", response_class=JSONResponse, include_in_schema=False)
+@router.post("/mask", response_class=JSONResponse, include_in_schema=True)
 async def mask(request: MaskRequest):
     entities = llm_find_entities(request.text)
     return {"original_text": request.text, "llm_entities": entities}
