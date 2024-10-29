@@ -26,6 +26,7 @@ install: $(INSTALL_STAMP)
 
 $(INSTALL_STAMP): pyproject.toml
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found. Please install it."; exit 2; fi
+	$(POETRY) add 'fastapi[standard]'
 	$(POETRY) install
 	touch $(INSTALL_STAMP)
 
@@ -54,4 +55,4 @@ test: $(INSTALL_STAMP)
 
 # Run target to execute the FastAPI application
 run: $(INSTALL_STAMP)
-	$(POETRY) run fastapi run src/api.py
+	$(POETRY) run fastapi run app.py

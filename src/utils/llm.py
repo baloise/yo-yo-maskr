@@ -1,7 +1,7 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
-from src.env import *
+from .env import *
 
 TEMPLATE = """
 Context: You anonymize texts in a way that can be reverted and return nothing but a json dictionary that can be parsed automatically.
