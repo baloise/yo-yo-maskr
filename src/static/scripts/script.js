@@ -12,7 +12,7 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: inputData }), // Send the input data as JSON
+        body: JSON.stringify({ text: inputData }), // Send the input text as JSON
     })
     .then(response => {
         if (!response.ok) {
@@ -20,10 +20,9 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
         }
         return response.json(); // Parse the JSON response
     })
-    .then(data => {
-        console.log('Success:', data); // Handle the success response
+    .then(text => {
         // Display the response in the textarea
-        document.getElementById('responseField').value = JSON.stringify(data, null, 2); // Format the JSON response
+        document.getElementById('responseField').value = JSON.stringify(text, null, 2); // Format the JSON response
     })
     .catch((error) => {
         console.error('Error:', error); // Handle any errors
