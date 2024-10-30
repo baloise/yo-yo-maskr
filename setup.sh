@@ -1,4 +1,4 @@
 pipx install poetry
 pipx ensurepath
-source ~/.bashrc
+. ~/.bashrc
 make install

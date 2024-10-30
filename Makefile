@@ -27,7 +27,7 @@ install: $(INSTALL_STAMP)
 
 $(INSTALL_STAMP): pyproject.toml
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found. Please install it."; exit 2; fi
-	$(POETRY) install
+	$(POETRY) install --without dev
 	touch $(INSTALL_STAMP)
 
 # Clean target to remove temporary files and caches
@@ -60,6 +60,6 @@ dev: $(INSTALL_STAMP)
 # Run target to execute the application for production
 run: $(INSTALL_STAMP)
 #	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
-	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
 
 	
