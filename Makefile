@@ -27,7 +27,7 @@ install: $(INSTALL_STAMP)
 
 $(INSTALL_STAMP): pyproject.toml
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found. Please install it."; exit 2; fi
-	$(POETRY) install
+	$(POETRY) install --only main
 	touch $(INSTALL_STAMP)
 
 # Clean target to remove temporary files and caches
