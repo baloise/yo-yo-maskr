@@ -1,17 +1,20 @@
 # yo-yo-maskᴙ
 A reversible anonymisation service for us all
 
-# Setup development environment
+## Build status
+[![Docker](https://github.com/baloise/yo-yo-maskr/actions/workflows/docker-publish.yml/badge.svg?branch=release)](https://github.com/baloise/yo-yo-maskr/actions/workflows/docker-publish.yml)
+
+## Setup development environment
 
 ```
 ./setup.sh
 ```
-# Run
+## Run
 
 ```
 make run
 ```
-# Trouble shooting
+## Trouble shooting
 
 ```
 echo -n 'db' | gnome-keyring-daemon --unlock

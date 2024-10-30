@@ -14,6 +14,8 @@ ENV OLLAMA_BASE_URL=http://localhost:11434 \
 RUN apk add --no-cache --update \
     python3 \
     py3-pip \
+    gcc \
+    python3-dev \
     make \
     bash \
     && rm -rf ~/.cache/* /usr/local/share/man /tmp/*
