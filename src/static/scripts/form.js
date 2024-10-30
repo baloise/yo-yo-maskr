@@ -22,11 +22,12 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
     })
     .then(text => {
         // Display the response in the textarea
-        document.getElementById('responseField').value = JSON.stringify(text, null, 2); // Format the JSON response
+        document.getElementById('responseFieldText').value = JSON.stringify(text.original_text, null, 2); // Format the JSON response
+        document.getElementById('responseFieldEntities').value = JSON.stringify(text.llm_entities, null, 2); // Format the JSON response
     })
     .catch((error) => {
         console.error('Error:', error); // Handle any errors
         // Optionally display the error in the textarea
-        document.getElementById('responseField').value = 'Error: ' + error.message;
+        document.getElementById('responseFieldText').value = 'Error: ' + error.message;
     });
 });
