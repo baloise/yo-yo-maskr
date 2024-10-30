@@ -20,7 +20,7 @@
         <div class="center-block">
             <h3>Input:</h3>
             <form id="inputForm">
-                <input type="text" id="inputData" placeholder="Enter text to anonymize" required>
+                <input rows="10" cols="50" type="text" id="inputData" placeholder="Enter text to anonymize" required>
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -34,6 +34,11 @@
             <h3>Entities found:</h3>
             <textarea id="responseFieldEntities" rows="10" cols="50" readonly></textarea><br><br>
             <button id="downloadBtn">Download</button>
+        </div>
+
+        <div class="center-block">
+            <h3>anonymized text:</h3>
+            <textarea id="responseFieldAnonText" rows="10" cols="50" readonly></textarea><br><br>
         </div>
     </main>
 
