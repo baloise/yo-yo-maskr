@@ -33,7 +33,10 @@ WORKDIR /app
 # set script permissions
 RUN chmod +x entrypoint.sh setup.sh
 
+# create user
 RUN adduser -Ds /bin/bash anon && chown -R anon: /app
+
+# switch to user
 USER anon
 
 # run app setup script
