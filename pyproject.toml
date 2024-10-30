@@ -26,11 +26,13 @@ gunicorn = "^0"
 python-dateutil = "^2.9.0.post0"
 tqdm = "^4.66.6"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^6.0"
 ruff = "^0.7"
 ipykernel = "^6.29.5"
 jupyter = "^1.1.1"
+pytest-benchmark = "^5.0.1"
+pyahocorasick = "^2.1.0"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
