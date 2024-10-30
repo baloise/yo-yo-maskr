@@ -35,6 +35,7 @@ jupyter = "^1.1.1"
 pytest-benchmark = "^5.0.1"
 pyahocorasick = "^2.1.0"
 polars = "^1.12.0"
+flashtext2 = "^1.1.0"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
