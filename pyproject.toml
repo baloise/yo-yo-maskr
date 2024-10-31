@@ -13,7 +13,7 @@ license = "Apache 2.0"
 authors = ["AI Circle <aicommunity@groups.baloise.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.13"
 fastapi= {extras = ["standard"], version = "^0"}
 langchain-ollama= "^0"
 rapidfuzz= "^3"
