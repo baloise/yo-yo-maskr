@@ -1,5 +1,5 @@
 import pytest
-from src.utils.llm import llm_find_entities
+from src.utils.ano_llm import llm_find_entities
 
 def test_llm_find_entities_basic():
     text = "Tony Stark and Peter Parker walk through New York where Peter wants to show Tony the Broadway."

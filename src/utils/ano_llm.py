@@ -1,6 +1,8 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
+from .env import *
+
 
 
 TEMPLATE = """
@@ -38,8 +40,8 @@ Output: {{"#NAME_1#":["Tony Stark", "Tony"], "#NAME_2#": ["Peter Parker", "Peter
 Text to anonymize: {text}
 """
 
-def find_entities(text, model='gemma2', temperature=0, template=TEMPLATE,
-                   base_url='http://localhost:11434', raw=False):
+def find_entities(text, model=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
+                   base_url=OLLAMA_BASE_URL, raw=False):
     """
     :param text:
     :param model:

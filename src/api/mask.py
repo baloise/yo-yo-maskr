@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi import Request
 from enum import Enum
 from pydantic import BaseModel
-from src.utils.llm import llm_find_entities
+from src.utils.ano_llm import find_entities
 from src.utils.replacer import replace_values
 from src.utils.ano_spacy import Anon_Spacy
 from src.utils.ano_regex import anonymize_entities
@@ -26,7 +26,7 @@ async def mask(request: MaskRequest):
     
     match request.backendType:
         case BackendType.LLM:
-            llm_entities = llm_find_entities(request.text)
+            llm_entities = find_entities(request.text)
             anontext = replace_values(request.text, llm_entities)
             return {"original_text": request.text, "entities": llm_entities, "anonymized_text": anontext}
         case BackendType.NER:
