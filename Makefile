@@ -63,10 +63,7 @@ dev: $(INSTALL_STAMP)
 run: $(INSTALL_STAMP)
 #	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
 	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
-run: $(INSTALL_STAMP)
-#	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
-	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
 
 loadModels: $(INSTALL_STAMP)
-	$(POETRY) run python src/utils/anonymize_spacy.py loadModels
+	$(POETRY) run python src/utils/ano_spacy.py loadModels
 	

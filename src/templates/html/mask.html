@@ -27,10 +27,17 @@
             </div>
             <div class="flex-item">
                 <form id="inputForm">
-                    <textarea type="text" id="inputData" placeholder="Enter text to anonymize or load text from a file" required></textarea>
+                    <textarea type="text" id="inputData" placeholder="Enter text to anonymize or load text from a file" required>Hallo Velo und Roberto in Basel. Nice email roberto@roberto.ch</textarea>
                     <div class="flex-container">
                         <div class="flex-item">
                             <input type="submit" value="Submit">
+                        </div>
+                        <div class="flex-item">
+                            <select id="backendType" name="backendType" required>
+                                <option value="LLM">LLM</option>
+                                <option value="REG">REG</option>
+                                <option value="NER">NER</option>
+                            </select>
                         </div>
                     </div>  
                 </form>

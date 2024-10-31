@@ -1,6 +1,7 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
+from .env import *
 
 
 TEMPLATE = """
@@ -43,8 +44,9 @@ Output: {{"#NAME_1#":["Tony Stark", "Tony"], "#NAME_2#": ["Peter Parker", "Peter
 Text to anonymize: {text}
 """
 
-def find_entities(text, model='gemma2', temperature=0, template=TEMPLATE,
-                   base_url='http://localhost:11434', raw=True):
+
+def find_entities(text, model=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
+                   base_url=OLLAMA_BASE_URL, raw=False):
     """
     :param text:
     :param model:
@@ -64,50 +66,3 @@ def find_entities(text, model='gemma2', temperature=0, template=TEMPLATE,
     for k, v in result.items():
         text = text.replace(v.get('replacement'), k)
     return {'text': text, 'replace_dict': result}
-
-def chat_with_entities(text, model='gemma2', temperature=0.2, template=TEMPLATE,
-                       base_url='http://localhost:11434', raw=True, chat_history=None):
-    """
-    :param text: New message text input.
-    :param model: Model name for entity recognition.
-    :param temperature: Temperature setting for the model.
-    :param template: Template for the initial prompt.
-    :param base_url: URL of the model server.
-    :param raw: Boolean indicating whether to return raw model output.
-    :param chat_history: List storing past messages in the conversation.
-    :return: Processed text with entities replaced or raw output.
-    """
-    
-    # Initialize chat history if it's the first turn
-    if chat_history is None:
-        chat_history = []
-    
-    # Add the new input to the chat history
-    chat_history.append({"role": "user", "content": text})
-    
-    # Generate the prompt using chat history
-    # Adapt the template to format history for the model to maintain context
-    conversation_prompt = template + "\n\n" + "\n".join([f"{entry['role']}: {entry['content']}" for entry in chat_history])
-    
-    # Create the prompt with context from chat history
-    prompt = ChatPromptTemplate.from_template(conversation_prompt)
-    model = OllamaLLM(base_url=base_url, model=model, temperature=temperature)
-    chain = prompt | model
-    
-    # Invoke the model with the accumulated conversation
-    result = chain.invoke({"text": text})
-    
-    if raw:
-        return result  # Return raw output if specified
-    
-    # Post-process the result if not raw
-    result = {k: {'matches': (m := sorted(list(set(v)), key=len, reverse=True)), 'replacement': m[0]} for k, v in json.loads(result.strip()).items()}
-    
-    for k, v in result.items():
-        text = text.replace(v.get('replacement'), k)
-    
-    return {'text': text, 'replace_dict': result, 'chat_history': chat_history}  # Return updated history too
-
-
-
-
