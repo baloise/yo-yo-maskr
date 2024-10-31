@@ -270,7 +270,7 @@ def anonymize_phone(text, by='PHONE', start_tag='#', end_tag='#', count=True, fi
     return anonymize_regex(text, regex, by, start_tag, end_tag, count, first, False, keep_regex)
 
 
-def anonymize_entities(text, by_ahv='AHV', by_phone='PHONE', by_currencies='CURRENCY', by_email='EMAIL', by_dates='DATE', by_names='PERSON',
+def find_entities(text, by_ahv='AHV', by_phone='PHONE', by_currencies='CURRENCY', by_email='EMAIL', by_dates='DATE', by_names='PERSON',
                        first_names=first_trie_regex, last_names=last_trie_regex, start_tag='#', end_tag='#', count=True, first=1, flip_replace_dict=True, keep_regex=False):
     """
     

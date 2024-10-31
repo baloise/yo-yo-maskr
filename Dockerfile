@@ -12,6 +12,7 @@ ARG LOAD_NER_MODELS="False"
 # set default environment variables
 ENV OLLAMA_BASE_URL=http://localhost:11434 \
     OLLAMA_MODEL=llama3.2:latest \
+    DEBIAN_FRONTEND=noninteractive \
     HTTPX_CLIENT_VERIFY=
 
 # add app src
@@ -21,7 +22,7 @@ COPY . /app/
 WORKDIR /app
 
 # set script permissions
-RUN chmod +x entrypoint.sh setup.sh
+RUN chmod +x entrypoint.sh docker_setup.sh
 
 RUN apt -y update \
     && apt install -y make \

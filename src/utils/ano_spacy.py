@@ -24,7 +24,7 @@ class Anon_Spacy:
                 text_with_placeholders = text_with_placeholders.replace(str(entity['entity']), placeholder)
         return {'text': text_with_placeholders, 'replace_dict': replace_dict}
 
-    def anonymize_names(self, text, language='de'):
+    def find_entities(self, text, language='de'):
         return self._create_dict(text, self.analyze_text(text, language))
 
     def analyze_text(self, text, language='de',entities=['PERSON']):
