@@ -39,6 +39,7 @@ clean:
 cleaner:
 	$(MAKE) clean
 	rm -rf .venv
+	rm poetry.lock
 
 # Lint target to run code linters
 lint: $(INSTALL_STAMP)
