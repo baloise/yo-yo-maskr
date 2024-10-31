@@ -12,7 +12,7 @@
     <header>
         <div>
             <h1>YoYo MaskЯ</h1>
-            <img class="logo" id="AppLogo" src="/static/public/yo-yo-maskr-logo.svg" alt="YoYo MaskR Logo" width="200" height="200">
+            <img class="logo" id="AppLogo" src="/static/public/yo-yo-maskr-logo.svg" alt="YoYo MaskR Logo">
         </div>
     </header>
 
@@ -20,7 +20,7 @@
         <div class="center-block">
             <h3>Input:</h3>
             <form id="inputForm">
-                <input type="text" id="inputData" placeholder="Enter text to anonymize" required>
+                <input rows="10" cols="50" type="text" id="inputData" placeholder="Enter text to anonymize" required>
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -35,6 +35,11 @@
             <textarea id="responseFieldEntities" rows="10" cols="50" readonly></textarea><br><br>
             <button id="downloadBtn">Download</button>
         </div>
+
+        <div class="center-block">
+            <h3>anonymized text:</h3>
+            <textarea id="responseFieldAnonText" rows="10" cols="50" readonly></textarea><br><br>
+        </div>
     </main>
 
     <footer>
@@ -44,6 +49,7 @@
             </a>
         </div>
     </footer>
+
     <!-- Link to the external JavaScript file -->
     <script src="/static/scripts/form.js"></script>
     <script src="/static/scripts/downloader.js"></script>
