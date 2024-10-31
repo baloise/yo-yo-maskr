@@ -36,3 +36,12 @@ footer {
     margin-right: auto;
     text-align: center;
 }
+
+.dlbutton {
+    margin-top: 50px;
+}
+
+#inputData {
+    width:340px;
+    height: 100px;
+}

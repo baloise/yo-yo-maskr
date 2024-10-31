@@ -18,32 +18,35 @@
 
     <main>
         <div class="center-block">
-            <h3>Input:</h3>
+            <h3>Input</h3>
             <form id="inputForm">
-                <input rows="10" cols="50" type="text" id="inputData" placeholder="Enter text to anonymize" required>
+                <input type="text" id="inputData" placeholder="Enter text to anonymize" required>
                 <input type="submit" value="Submit">
             </form>
         </div>
     
         <div class="center-block">
-            <h3>Initial Text:</h3>
+            <h3>Initial Text</h3>
             <textarea id="responseFieldText" rows="10" cols="50" readonly></textarea>
         </div>
     
         <div class="center-block">
-            <h3>Entities found:</h3>
-            <textarea id="responseFieldEntities" rows="10" cols="50" readonly></textarea><br><br>
-            <button id="downloadBtn">Download</button>
+            <h3>Entities found</h3>
+            <textarea id="responseFieldEntities" rows="10" cols="50" readonly></textarea>
         </div>
 
         <div class="center-block">
-            <h3>anonymized text:</h3>
-            <textarea id="responseFieldAnonText" rows="10" cols="50" readonly></textarea><br><br>
+            <h3>Masked text</h3>
+            <textarea id="responseFieldAnonText" rows="10" cols="50" readonly></textarea>
+        </div>
+
+        <div class="center-block dlbutton">
+            <button id="downloadBtn">Download Files</button>
         </div>
     </main>
 
     <footer>
-        <div class="footer">
+        <div>
             <a href="https://github.com/baloise/yo-yo-maskr">
                 <img src="/static/public/github-mark.svg" alt="GitHub" width="30" height="30">
             </a>
