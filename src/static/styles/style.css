@@ -30,9 +30,48 @@ footer {
     text-align: center;
 }
 
-.center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+#inputData {
+    width:340px;
+    height: 100px;
+}
+
+#output {
+    margin-top: 20px;
+    white-space: pre-wrap; /* Preserve whitespace */
+}
+
+.flex-container {
+    display: flex; /* Use flexbox to align items */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+    flex-direction: column;
+    gap: 5px; /* Optional: Add space between buttons */
+}
+
+.flex-item {
+    flex: 1;
+    padding: 2px;
+    margin: 0px;
+}
+
+.button-container {
+    display: flex; /* Use flexbox to align items */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+    gap: 10px; /* Optional: Add space between buttons */
+}
+
+.square-button {
+    width: 150px;          /* Width of the button */
+    height: 100px;         /* Height of the button (same as width for square) */
+    background-color: var(--background-button); /* Background color */
+    border: none;         /* No border */
+    border-radius: 5px;   /* Slightly rounded corners */
+    cursor: pointer;      /* Pointer cursor on hover */
+    font-size: 16px;      /* Font size */
+}
+
+.square-button:hover {
+    background-color: black; /* Background color */
+    color: white;           /* Text color */
 }

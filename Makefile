@@ -27,7 +27,7 @@ install: $(INSTALL_STAMP)
 
 $(INSTALL_STAMP): pyproject.toml
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found. Please install it."; exit 2; fi
-	$(POETRY) install --without dev
+	$(POETRY) install $(POETRY_FLAGS)
 	touch $(INSTALL_STAMP)
 
 # Clean target to remove temporary files and caches
@@ -39,6 +39,7 @@ clean:
 cleaner:
 	$(MAKE) clean
 	rm -rf .venv
+	rm poetry.lock
 
 # Lint target to run code linters
 lint: $(INSTALL_STAMP)

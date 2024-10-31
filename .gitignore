@@ -163,3 +163,4 @@ cython_debug/
 
 /.install.stamp
 /poetry.lock
+/tmp
