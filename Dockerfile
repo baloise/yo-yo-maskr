@@ -1,4 +1,4 @@
-FROM python:3.12-bookworm
+FROM --platform=linux/amd64 python:3.12.7-slim-bookworm
 
 # set metadata
 LABEL maintainer="culmat, trichie, robbizbal" \
@@ -21,6 +21,11 @@ WORKDIR /app
 
 # set script permissions
 RUN chmod +x entrypoint.sh setup.sh
+
+RUN apt -y update \
+    && apt install -y make \
+    && apt clean autoclean \
+    && rm -rf /var/lib/apt/lists/*
 
 # create user
 #RUN useradd -ms /bin/bash anon && chown -R anon: /app
