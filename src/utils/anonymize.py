@@ -38,7 +38,6 @@ class Anon:
         return [(match.group(), match.start(), match.end()) for match in firstnames + lastnames]
 
     def _init_trie(self):        
-        from src.utils.ano_regex import create_names_regex
         from src.utils.trie import Trie
 
         with open('./data/first_names_trie_regex.pkl', 'rb') as f:
