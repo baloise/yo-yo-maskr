@@ -1,7 +1,7 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
-from .env import *
+from src.utils.env import *
 
 
 TEMPLATE = """

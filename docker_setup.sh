@@ -4,6 +4,7 @@ pipx install poetry
 pipx ensurepath
 . ~/.bashrc
 make install
-if [ "$LOAD_NER_MODELS" == "False" ]; then
+if [ "$LOAD_NER_MODELS" == "True" ]; then
+    echo "Loading NER models"
     make loadModels
 fi
