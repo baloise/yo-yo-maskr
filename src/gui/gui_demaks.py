@@ -7,8 +7,8 @@ templates = Jinja2Templates(directory="src/templates/html")
 
 router = fastapi.APIRouter()
 
-@router.get("/", response_class=HTMLResponse, include_in_schema=False)
+@router.get("/demask", response_class=HTMLResponse, include_in_schema=False)
 def landing(request: Request): 
     return templates.TemplateResponse(
-        request=request, name="form.html", context={"id": id}
+        request=request, name="demask.html", context={"id": id}
     )
