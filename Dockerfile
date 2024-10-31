@@ -7,6 +7,7 @@ LABEL maintainer="culmat, trichie, robbizbal" \
 
 # set poetry environment variables
 ARG POETRY_FLAGS="--only main"
+ARG LOAD_NER_MODELS="False"
 
 # set default environment variables
 ENV OLLAMA_BASE_URL=http://localhost:11434 \
@@ -43,7 +44,7 @@ RUN python3 -m pip install --upgrade pip \
     && python3 -m pipx completions
 
 # run app setup script
-RUN "./setup.sh"
+RUN "./docker_setup.sh"
 
 # expose port
 EXPOSE 8000

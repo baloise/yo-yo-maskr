@@ -4,3 +4,6 @@ pipx install poetry
 pipx ensurepath
 . ~/.bashrc
 make install
+if [ "$LOAD_NER_MODELS" == "False" ]; then
+    make loadModels
+fi

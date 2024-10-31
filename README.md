@@ -7,7 +7,10 @@ A reversible anonymisation service for us all
 ## Setup development environment
 
 ```
-./setup.sh
+python3 -m pip install pipx
+pipx install poetry
+pipx ensurepath
+make install
 ```
 ## Run
 
