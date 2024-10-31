@@ -3,6 +3,12 @@ from dateutil import parser
 from dateutil.parser import ParserError
 from itertools import product
 import regex as re
+import dill
+
+with open('./data/first_names_trie_regex.pkl', 'rb') as f:
+    first_trie_regex = dill.load(f)
+with open('./data/last_names_trie_regex.pkl', 'rb') as f:
+    last_trie_regex = dill.load(f)
 
 COUNTRY_CODES_REGEX = r'41'
 CURRENCY_REGEX = r'EUR|CHF|Fr\.|Franken|Francs'
@@ -264,8 +270,8 @@ def anonymize_phone(text, by='PHONE', start_tag='#', end_tag='#', count=True, fi
     return anonymize_regex(text, regex, by, start_tag, end_tag, count, first, False, keep_regex)
 
 
-def anonymize_entities(text, by_ahv='AHV', by_phone='PHONE', by_currencies='CURRENCY', by_email='EMAIL', by_dates='DATE', by_names='NAME',
-                       first_names=None, last_names=None, start_tag='#', end_tag='#', count=True, first=1, flip_replace_dict=True, keep_regex=False):
+def anonymize_entities(text, by_ahv='AHV', by_phone='PHONE', by_currencies='CURRENCY', by_email='EMAIL', by_dates='DATE', by_names='PERSON',
+                       first_names=first_trie_regex, last_names=last_trie_regex, start_tag='#', end_tag='#', count=True, first=1, flip_replace_dict=True, keep_regex=False):
     """
     
     :param text:
