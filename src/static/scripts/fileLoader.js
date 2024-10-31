@@ -1,4 +1,5 @@
-document.getElementById('uploadButton').addEventListener('click', function() {
+function handleFileLoad() {
+
     const fileInput = document.getElementById('fileInput');
     const output = document.getElementById('inputData');
 
@@ -12,7 +13,7 @@ document.getElementById('uploadButton').addEventListener('click', function() {
 
     reader.onload = function(e) {
         const fileContent = e.target.result;
-        output.value = fileContent; // Display the content of the file
+        output.textContent = fileContent; // Display the content of the file
     };
 
     reader.onerror = function(e) {
@@ -20,9 +21,9 @@ document.getElementById('uploadButton').addEventListener('click', function() {
     };
 
     reader.readAsText(file); // Read the file as text
-});
+}
 
-document.getElementById('uploadButtonE').addEventListener('click', function() {
+function handleEntityLoad() {
     const fileInputE = document.getElementById('fileInputE');
     const output = document.getElementById('responseFieldEntities');
 
@@ -44,4 +45,8 @@ document.getElementById('uploadButtonE').addEventListener('click', function() {
     };
 
     reader.readAsText(fileE); // Read the file as text
-});
+}
+
+document.getElementById('fileInput').addEventListener('change', handleFileLoad);
+document.getElementById('fileInputE').addEventListener('change', handleEntityLoad);
+
