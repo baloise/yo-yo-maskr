@@ -44,8 +44,7 @@ Output: {{"#NAME_1#":["Tony Stark", "Tony"], "#NAME_2#": ["Peter Parker", "Peter
 Text to anonymize: {text}
 """
 
-def find_entities(text, model_name=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
-                   base_url=OLLAMA_BASE_URL, raw=False):
+def find_entities(text, model_name=OLLAMA_MODEL, temperature=0, template=TEMPLATE, base_url=OLLAMA_BASE_URL, raw=False):
     """
     :param text:
     :param model:
@@ -64,7 +63,7 @@ def find_entities(text, model_name=OLLAMA_MODEL, temperature=0, template=TEMPLAT
     result = chain.invoke({"text": text})
     if raw:
         return result
-    result = {k: {'matches': (m:=sorted(list(set(v)), key=len, reverse=True)), 'replacement': m[0]} for k, v in json.loads(result.strip()).items()}
+    result = {k: {'matches': (m:=sorted(list(set(v)), key=len, reverse=True)), 'replacement': m[0]} for k, v in json.loads(result).items() if len(v) > 0}
     for k, v in result.items():
         text = text.replace(v.get('replacement'), k)
     return {'text': text, 'replace_dict': result}
