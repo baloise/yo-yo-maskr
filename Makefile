@@ -6,13 +6,14 @@ INSTALL_STAMP := .install.stamp
 .DEFAULT_GOAL := help
 
 # Declare phony targets
-.PHONY: help install clean lint format test cleaner run dev
+.PHONY: help install clean lint format test cleaner run dev loadModels
 
 # Help target to display available commands
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
 	@echo ""
 	@echo " install   - Install packages and prepare environment"
+	@echo " loadModels- load spacy models"
 	@echo " clean     - Remove all temporary files"
 	@echo " cleaner   - Remove all temporary files and the .venv folder"
 	@echo " lint      - Run the code linters"
@@ -62,5 +63,10 @@ dev: $(INSTALL_STAMP)
 run: $(INSTALL_STAMP)
 #	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
 	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
+run: $(INSTALL_STAMP)
+#	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
+	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
 
+loadModels: $(INSTALL_STAMP)
+	$(POETRY) run python src/utils/anonymize_spacy.py loadModels
 	
