@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoYo MaskЯ</title>
+    <link rel="icon" type="image/svg+xml" href="/static/public/favicon.svg">
+    <link rel="stylesheet" href="/static/styles/colors.css">
+    <link rel="stylesheet" href="/static/styles/style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>YoYo MaskЯ</h1>
+            <a href="/">
+                <img class="logo" id="AppLogo" src="/static/public/yo-yo-maskr-logo.svg" alt="YoYo MaskR Logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="button-container">
+            <button class="square-button"onclick="window.location.href='/mask'">Mask</button>
+            <button class="square-button" onclick="window.location.href='/demask'">DeMask</button>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <a href="https://github.com/baloise/yo-yo-maskr">
+                <img src="/static/public/github-mark.svg" alt="GitHub" width="30" height="30">
+            </a>
+        </div>
+    </footer>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="/static/scripts/mask.js"></script>
+    <script src="/static/scripts/fileLoader.js"></script>
+    <script src="/static/scripts/mask_downloader.js"></script>
+</body>
+</html>
