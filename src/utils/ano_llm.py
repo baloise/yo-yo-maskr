@@ -40,7 +40,7 @@ Output: {{"#NAME_1#":["Tony Stark", "Tony"], "#NAME_2#": ["Peter Parker", "Peter
 Text to anonymize: {text}
 """
 
-def find_entities(text, model=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
+def find_entities(text, model_name=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
                    base_url=OLLAMA_BASE_URL, raw=False):
     """
     :param text:
@@ -51,9 +51,12 @@ def find_entities(text, model=OLLAMA_MODEL, temperature=0, template=TEMPLATE,
     :param raw:
     :return:
     """
+    
+    
     prompt = ChatPromptTemplate.from_template(template)
-    model = OllamaLLM(base_url=base_url, model=model, temperature=temperature)
+    model = OllamaLLM(model=model_name, temperature=temperature, base_url=base_url, client_kwargs={"verify": os.getenv("HTTPX_CLIENT_VERIFY", True)})
     chain = prompt | model
+
     result = chain.invoke({"text": text})
     if raw:
         return result
