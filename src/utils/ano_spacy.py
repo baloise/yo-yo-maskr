@@ -10,24 +10,39 @@ class Anon_Spacy:
         self.models = {lang: f"{lang}_core_{gernres[lang]}_{size}" for lang in languages}
         self.models_loaded = {}
 
+
+    def _flipDict(self,dict:dict)->dict:
+        flipped = {}
+        for key, value in dict.items():
+            flipped[value] = {'matches': {key}, 'replacement': key}
+        return flipped
+
     def _create_dict(self, text:str, analysis:list)->dict:
         replace_dict:dict = {}
         text_with_placeholders:str = text
         for i, entity in enumerate(analysis):
-            if not entity['entity'] in replace_dict.keys():
-                placeholder = f"#NAME_{i+1}#"
-                replace_dict[entity['entity']] = placeholder
-                text_with_placeholders = text_with_placeholders.replace(str(entity['entity']), placeholder)
-        return {'text': text_with_placeholders, 'replace_dict': replace_dict}
+            match = str(entity['entity'])
+            if not match in replace_dict.keys():
+                replacement = f"#PERSON_{i+1}#"
+                replace_dict[match] = replacement
+                text_with_placeholders = text_with_placeholders.replace(match, replacement)
+        return {'text': text_with_placeholders, 'replace_dict': self._flipDict(replace_dict)}
 
     def find_entities(self, text, language='de'):
         return self._create_dict(text, self.analyze_text(text, language))
+    
+    def _mapSpacyEntities(self,entities):
+        entity_mapping = {
+            'PERSON': 'PER',
+        }
+        return [entity_mapping[entity] for entity in entities if entity in entity_mapping]
 
     def analyze_text(self, text, language='de',entities=['PERSON']):
         if not language in self.models:
             print(f"WARN: language '{language}' not supported. Supported languages are {self.models.keys()}.")
         analysis = self._get_analyzer(language)(text)
         results = []
+        entities = self._mapSpacyEntities(entities)
         for result in analysis.ents:
             if(result.label_ in entities):
                 results.append({
