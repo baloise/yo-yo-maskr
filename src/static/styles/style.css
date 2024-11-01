@@ -31,11 +31,6 @@ footer {
     text-align: center;
 }
 
-#inputData {
-    width:340px;
-    height: 100px;
-}
-
 #output {
     margin-top: 20px;
     white-space: pre-wrap; /* Preserve whitespace */
@@ -54,9 +49,15 @@ footer {
     justify-content: center; /* Center the buttons horizontally */
     align-items: center; /* Center the buttons vertically */
     flex-direction: row;
-    gap: 1px; /* Optional: Add space between buttons */
+    gap: 0px; /* Optional: Add space between buttons */
 }
 
+.default-textarea {
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    margin: 0px;
+}
 
 .flex-item {
     flex: 1;
@@ -84,4 +85,13 @@ footer {
 .square-button:hover {
     background-color: black; /* Background color */
     color: white;           /* Text color */
+}
+
+@media (max-width: 768px) {
+    .flex-container-row {
+        flex-direction: column; /* Stack items vertically */
+    }
+    .button-container {
+        flex-direction: column; /* Stack items vertically */
+    }
 }
