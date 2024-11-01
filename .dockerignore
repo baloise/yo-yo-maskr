@@ -1,2 +1,14 @@
 poetry.lock
 .install.stamp
+.venv
+dist
+.vscode
+.github
+.git
+.gitignore
+tests
+.env
+mypi.ini
+README.md
+sample_text.txt
+yoyonmaskr.ipynb
