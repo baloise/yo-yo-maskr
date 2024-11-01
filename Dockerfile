@@ -5,6 +5,9 @@ LABEL maintainer="culmat, trichie, robbizbal" \
       org.opencontainers.image.description="Yo-Yo-Maskr application Docker image" \
       version="0.1.0"
 
+# expose port
+EXPOSE 8000
+
 # set poetry environment variables
 ARG POETRY_FLAGS="--only main"
 ARG LOAD_NER_MODELS="False"
@@ -39,6 +42,9 @@ RUN chgrp -R 0 /app && chmod -R g+rwX /app
 # switch to user
 USER anon
 
+# set workdir
+WORKDIR /app
+
 RUN python3 -m pip install --upgrade pip \
     && python3 -m pip install pipx \
     && python3 -m pipx ensurepath \
@@ -46,9 +52,6 @@ RUN python3 -m pip install --upgrade pip \
 
 # run app setup script
 RUN "./docker_setup.sh"
-
-# expose port
-EXPOSE 8000
 
 # run app
 ENTRYPOINT ["/app/entrypoint.sh"]
