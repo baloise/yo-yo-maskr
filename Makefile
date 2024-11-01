@@ -1,5 +1,6 @@
 # Define variables
-POETRY := $(shell command -v poetry 2> /dev/null)
+POETRY := $(shell which poetry)
+#POETRY := $(shell command -v poetry 2> /dev/null)
 INSTALL_STAMP := .install.stamp
 
 # Set the default goal
