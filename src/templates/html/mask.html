@@ -27,17 +27,17 @@
             </div>
             <div class="flex-item">
                 <form id="inputForm">
-                    <textarea type="text" id="inputData" placeholder="Enter text to anonymize or load text from a file" required></textarea>
-                    <div class="flex-container">
-                        <div class="flex-item">
-                            <input type="submit" value="Submit">
-                        </div>
+                    <textarea class="default-textarea" type="text" id="inputData" placeholder="Enter text to anonymize or load text from a file" required></textarea>
+                    <div class="flex-container-row">
                         <div class="flex-item">
                             <select id="backendType" name="backendType" required>
                                 <option value="REG">REG</option>
                                 <option value="LLM">LLM</option>
                                 <option value="NER">NER</option>
                             </select>
+                        </div>
+                        <div class="flex-item">
+                            <input type="submit" value="Submit">
                         </div>
                     </div>  
                 </form>
@@ -54,21 +54,21 @@
                 <h3>Initial Text</h3>
             </div>
             <div class="flex-item">
-                <textarea id="responseFieldText" rows="10" cols="50" readonly></textarea>
+                <textarea class="default-textarea" type="text" id="responseFieldText" readonly></textarea>
             </div>
 
             <div class="flex-item">
                 <h3>Entities found</h3>
             </div>
             <div class="flex-item">
-                <textarea id="responseFieldEntities" rows="10" cols="50" readonly></textarea>
+                <textarea class="default-textarea" id="responseFieldEntities" readonly></textarea>
             </div>
 
             <div class="flex-item">
                 <h3>Masked text</h3>
             </div>
             <div class="flex-item">
-                <textarea id="responseFieldAnonText" rows="10" cols="50" readonly></textarea>
+                <textarea class="default-textarea" id="responseFieldAnonText" readonly></textarea>
             </div>
 
             <div class="flex-item">
