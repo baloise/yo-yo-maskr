@@ -28,6 +28,7 @@ tqdm = "^4.66.6"
 dill = "^0.3.9"
 spacy ="^3.8"
 presidio_analyzer="^2.2"
+pydantic = "^2.9.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^6.0"
