@@ -53,5 +53,6 @@ testpaths = [
 filterwarnings = [
     "error",
     'ignore:ast.* is deprecated:DeprecationWarning',
+    'ignore:PluggyTeardownRaisedWarning',
 ]
 
