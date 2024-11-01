@@ -49,6 +49,15 @@ footer {
     gap: 5px; /* Optional: Add space between buttons */
 }
 
+.flex-container-row {
+    display: flex; /* Use flexbox to align items */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+    flex-direction: row;
+    gap: 5px; /* Optional: Add space between buttons */
+}
+
+
 .flex-item {
     flex: 1;
     padding: 2px;
