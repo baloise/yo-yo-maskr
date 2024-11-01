@@ -1,12 +1,9 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
-<<<<<<< HEAD
 import regex as re
 from .env import *
-=======
 from src.utils.env import *
->>>>>>> eee9d0537daf0aa72a684a851647338c668c2cc1
 
 TEMPLATE1 = """
 Context: Your task is to find entities in a text and tag them in a way that they can be anonymized in a reversible way.
@@ -35,14 +32,9 @@ such as 756.XXXX.XXXX.XX (Switzerland), YYMMDD-XXX-XX (Belgium), 12-345678A 123 
 Do not include the result of this step in your output.
 
 Step 3: You build a json style dictionary directly be parsed by Python into an object structure
-<<<<<<< HEAD
-with labels as keys and for each label a list of variations of an entity as values.
+with labels as keys and for each label a lists of variations of entities as values. 
 Stick exactly to this structure and don't add anything around that json.
-a) Labels of persons are enumerated #NAME_1#, #NAME_2#, etc. always beginning with index 1.
-=======
-with labels as keys and lists of variations of entities as values. Stick exactly to this structure and don't add anything around that json.
 a) Labels of persons are enumerated #PERSON_1#, #PERSON_2#, etc. always beginning with index 1.
->>>>>>> eee9d0537daf0aa72a684a851647338c668c2cc1
 b) Labels of organisations as #ORG_1#, #ORG_2#, etc. always beginning index with 1.
 c) Labels of email addresses as #EMAIL_1#, #EMAIL_2#, etc. always beginning with index 1.
 d) Labels of phone numbers as #PHONE_1#, #PHONE_2#, etc. always beginning with index 1.
@@ -55,27 +47,14 @@ Are all entities you grouped together really just variations of the same entity 
 If necessary, split such groups of entities. Make sure that each sort of labels keeps a continuous numbering beginning with 1.
 This json style dictionary is the only output that you return.
 
-<<<<<<< HEAD
-Example input:
-"Tony Stark and Peter Parker walk through New York where Peter wants to show Tony the Broadway and the Apple Store.
-Tony's private email is tony@stark.com, his busienss email is ceo@stark.com, his private number is +41-76-1234567 and his business number is +41 58 1234567.
-He also has an AHV number, which is 756.1234.5678.90".
-
-Example output:
-{{"#NAME_1#": ["Tony Stark", "Tony"],"#NAME_2#": ["Peter Parker", "Peter"],"#LOC_1#": ["New York"],"#LOC_2#": ["Broadway"],"#ORG_1#": ["Apple"],"#EMAIL_1#": ["tony@stark.com"],"#EMAIL_2#": ["ceo@stark.com"],"#PHONE_1#": ["+41-76-1234567"],"#PHONE_2#": ["+41 58 1234567"],"#SOCSEC_1#": ["756.1234.5678.90"]}}
-=======
 Example:
 Input: "Tony Stark and Peter Parker walk through New York where Peter wants to show Tony the Broadway and the Apple Store.
 Tony's private email is tony@stark.com, his busienss email is ceo@stark.com, his private number is +41-76-1234567 and his business number is +41 58 1234567".
 Output: {{"#PERSON_1#":["Tony Stark", "Tony"], "#PERSON_2#": ["Peter Parker", "Peter"], "#LOC_1#": ["New York"], "#LOC_2#": ["Broadway"],
 "ORG_1": ["Apple"], "#EMAIL_1#": ["tony@stark.com"], "#EMAIL_2#": ["ceo@stark.com"], "#PHONE_1#": ["+41-76-1234567"], “PHONE_2#: ["+41 58 1234567"]}}
->>>>>>> eee9d0537daf0aa72a684a851647338c668c2cc1
 
 Text to anonymize: {text}
 """
-
-<<<<<<< HEAD
-
 
 TEMPLATE2 = """
 **Objective**:
