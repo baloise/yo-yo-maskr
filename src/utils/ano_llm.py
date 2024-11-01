@@ -4,8 +4,6 @@ from langchain_ollama.llms import OllamaLLM
 import regex as re
 from src.utils.env import *
 
-
-
 TEMPLATE = """
 **Objective**:
 Identify and tag entities in the provided text for reversible anonymization, focusing on Switzerland, Germany, Belgium, and Luxembourg. The relevant categories include **persons, locations, organizations, email addresses, telephone numbers, social security numbers, dates, addresses, financial information**, and **credit card information**. Accurate tagging is critical; it is preferable to flag non-entities than to miss actual entities. If certain entities are variations of the same, you may group them; however, when in doubt, treat them as separate. Expect most entities to be unique.
@@ -37,7 +35,7 @@ Identify and tag entities in the provided text for reversible anonymization, foc
 4. **Create JSON Output**:
    - Format the JSON dictionary to be directly parsable by Python without any unwanted formatting or escape characters.
    - **Labels** should strictly follow this format, with continuous numbering starting at 1 for each category:
-     - **Persons**: "#NAME_1#", "#NAME_2#", etc.
+     - **Persons**: "#PERSON_1#", "#PERSON_2#", etc.
      - **Organizations**: "#ORG_1#", "#ORG_2#", etc.
      - **Locations**: "#LOC_1#", "#LOC_2#", etc.
      - **Emails**: "#EMAIL_1#", "#EMAIL_2#", etc.
@@ -49,10 +47,10 @@ Identify and tag entities in the provided text for reversible anonymization, foc
      - **Credit card information**: "#CREDITCARD_1#", "#CREDITCARD_2#", etc.
    - **Output Schema**:
      Please return a JSON object that follows this schema:
-     {{"#NAME_x#": ["list of names"],"#LOC_x#": ["list of locations"],"#ORG_x#": ["list of organizations"],"#EMAIL_x#": ["list of emails"],"#PHONE_x#": ["list of phone numbers"],"#SOCSEC_x#": ["list of social security numbers"],"#DATE_x#": ["list of dates"],"#ADDRESS_x#": ["list of addresses"],"#FINANCE_x#": ["list of financial information"],"#CREDITCARD_x#": ["list of credit card numbers"]}}
+     {{"#PERSON_x#": ["list of names"],"#LOC_x#": ["list of locations"],"#ORG_x#": ["list of organizations"],"#EMAIL_x#": ["list of emails"],"#PHONE_x#": ["list of phone numbers"],"#SOCSEC_x#": ["list of social security numbers"],"#DATE_x#": ["list of dates"],"#ADDRESS_x#": ["list of addresses"],"#FINANCE_x#": ["list of financial information"],"#CREDITCARD_x#": ["list of credit card numbers"]}}
      Ensure that each key is followed by a non-empty list, and do not add any explanation or pretty print such as line breaks or ```json tags outside of this JSON format.
    - **Output Example**:
-     {{"#NAME_1#": ["John Doe", "Herr Doe"],"#ORG_1#": ["ACME Corporation"],"#EMAIL_1#": ["john.doe@example.com"],"#PHONE_1#": ["+41 44 123 45 67"],"#SOCSEC_1#": ["756.1234.5678.90"],"#DATE_1#": ["2024-10-31"],"#ADDRESS_1#": ["Hauptstraße 123, Zürich"],"#FINANCE_1#": ["CHF 1'000"],"#CREDITCARD_1#": ["4111 1111 1111 1111"]}}
+     {{"#PERSON_1#": ["John Doe", "Herr Doe"],"#ORG_1#": ["ACME Corporation"],"#EMAIL_1#": ["john.doe@example.com"],"#PHONE_1#": ["+41 44 123 45 67"],"#SOCSEC_1#": ["756.1234.5678.90"],"#DATE_1#": ["2024-10-31"],"#ADDRESS_1#": ["Hauptstraße 123, Zürich"],"#FINANCE_1#": ["CHF 1'000"],"#CREDITCARD_1#": ["4111 1111 1111 1111"]}}
 
 5. **Double-Check Grouping**:
    - Confirm that each grouping accurately reflects variations of the same entity. If necessary, split and renumber labels starting at 1 for each category.
@@ -72,7 +70,7 @@ Tony's private email is tony@stark.com, his busienss email is ceo@stark.com, his
 He also has an AHV number, which is 756.1234.5678.90".
 
 **Example output**:
-{{"#NAME_1#": ["Tony Stark", "Tony"],"#NAME_2#": ["Peter Parker", "Peter"],"#LOC_1#": ["New York"],"#LOC_2#": ["Broadway"],"#ORG_1#": ["Apple"],"#EMAIL_1#": ["tony@stark.com"],"#EMAIL_2#": ["ceo@stark.com"],"#PHONE_1#": ["+41-76-1234567"],"#PHONE_2#": ["+41 58 1234567"],"#SOCSEC_1#": ["756.1234.5678.90"]}}
+{{"#PERSON_1#": ["Tony Stark", "Tony"],"#PERSON_2#": ["Peter Parker", "Peter"],"#LOC_1#": ["New York"],"#LOC_2#": ["Broadway"],"#ORG_1#": ["Apple"],"#EMAIL_1#": ["tony@stark.com"],"#EMAIL_2#": ["ceo@stark.com"],"#PHONE_1#": ["+41-76-1234567"],"#PHONE_2#": ["+41 58 1234567"],"#SOCSEC_1#": ["756.1234.5678.90"]}}
 
 
 Text to anonymize: {text}   

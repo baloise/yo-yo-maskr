@@ -37,7 +37,7 @@ RUN apt -y update \
 RUN useradd -ms /bin/bash -G 0 anon
 
 # set permissions - for OpenShift
-RUN chgrp -R 0 /app && chmod -R g+rwX /app
+RUN chgrp -R 0 /app && chown -R anon:0 /app && chmod -R g+rwX /app
 
 # switch to user
 USER anon

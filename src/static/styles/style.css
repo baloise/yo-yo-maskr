@@ -54,7 +54,7 @@ footer {
     justify-content: center; /* Center the buttons horizontally */
     align-items: center; /* Center the buttons vertically */
     flex-direction: row;
-    gap: 5px; /* Optional: Add space between buttons */
+    gap: 1px; /* Optional: Add space between buttons */
 }
 
 
