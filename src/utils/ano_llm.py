@@ -28,7 +28,7 @@ Do not include the result of this step in your output.
 
 Step 3: You build a json style dictionary directly be parsed by Python into an object structure
 with labels as keys and lists of variations of entities as values. Stick exactly to this structure and don't add anything around that json.
-a) Labels of persons are enumerated #NAME_1#, #NAME_2#, etc. always beginning with index 1.
+a) Labels of persons are enumerated #PERSON_1#, #PERSON_2#, etc. always beginning with index 1.
 b) Labels of organisations as #ORG_1#, #ORG_2#, etc. always beginning index with 1.
 c) Labels of email addresses as #EMAIL_1#, #EMAIL_2#, etc. always beginning with index 1.
 d) Labels of phone numbers as #PHONE_1#, #PHONE_2#, etc. always beginning with index 1.
@@ -38,7 +38,7 @@ This json style dictionary is the only output that you return.
 Example:
 Input: "Tony Stark and Peter Parker walk through New York where Peter wants to show Tony the Broadway and the Apple Store.
 Tony's private email is tony@stark.com, his busienss email is ceo@stark.com, his private number is +41-76-1234567 and his business number is +41 58 1234567".
-Output: {{"#NAME_1#":["Tony Stark", "Tony"], "#NAME_2#": ["Peter Parker", "Peter"], "#LOC_1#": ["New York"], "#LOC_2#": ["Broadway"],
+Output: {{"#PERSON_1#":["Tony Stark", "Tony"], "#PERSON_2#": ["Peter Parker", "Peter"], "#LOC_1#": ["New York"], "#LOC_2#": ["Broadway"],
 "ORG_1": ["Apple"], "#EMAIL_1#": ["tony@stark.com"], "#EMAIL_2#": ["ceo@stark.com"], "#PHONE_1#": ["+41-76-1234567"], “PHONE_2#: ["+41 58 1234567"]}}
 
 Text to anonymize: {text}

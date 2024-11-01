@@ -24,7 +24,8 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
     .then(text => {
         // Display the response in the textarea
         document.getElementById('responseFieldText').value = inputData; // Format the JSON response
-        document.getElementById('responseFieldDeanonText').value = text.deanonymized_text; // Format the string response
+        document.getElementById('responseFieldDeanonText').value = JSON.stringify(text.deanonymized_text, null, 2); // Format the JSON response
+        
     })
     .catch((error) => {
         console.error('Error:', error); // Handle any errors
