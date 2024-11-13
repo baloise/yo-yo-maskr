@@ -16,8 +16,9 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
     linkNT.href = URL.createObjectURL(blobNewText);
     linkNT.download = 'yoyo-anonymizedText.txt'; // Specify the file name
 
-    // Programmatically click the link to trigger the download
-    linkE.click();
+    setTimeout(function() {
+        linkE.click();
+    }, 50);
     linkNT.click();
 
     // Clean up and revoke the object URL
