@@ -1,3 +1,4 @@
+// shows/hides checkbox when LLM is selected
 document.getElementById('backendType').addEventListener('change', function() {
     var llmInputCheckbox = document.getElementById('LLMcustomLabel');
     if (this.value === 'LLM') {
@@ -7,13 +8,62 @@ document.getElementById('backendType').addEventListener('change', function() {
     }
 });
 
+// shows/hides custom input fields when checkbox is checked
 document.getElementById('LLMcustom').addEventListener('change', function() {
-    var llmInputDiv = document.getElementById('LLMInput'); 
+    var llmInputDiv = document.getElementById('LLMInput');
+    var llmInputReset = document.getElementById('LLMReset');
     if (this.checked === true) {
         llmInputDiv.style.display = 'flex'; // Show the LLMInput div
+        llmInputReset.style.display = 'flex';
     } else {
         llmInputDiv.style.display = 'none'; // Hide the LLMInput div
+        llmInputReset.style.display = 'none';
     }
+});
+
+// Load values from local storage when checkbox is true
+document.getElementById('LLMcustom').addEventListener('change', function() {
+    const llmUrl = localStorage.getItem('LLMURL');
+    const llmModel = localStorage.getItem('LLMMODEL');
+
+    if (this.checked === true) {
+        if (llmUrl) {
+            document.getElementById('inputLLMurl').value = llmUrl;
+        }
+        if (llmModel) {
+            document.getElementById('inputLLMmodel').value = llmModel;
+        }
+    } else {
+        document.getElementById('inputLLMurl').value = "";
+        document.getElementById('inputLLMmodel').value = "";
+    }
+});
+
+// Store values in local storage when form is submitted
+document.getElementById('inputForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get the values from the input fields
+    const llmUrl = document.getElementById('inputLLMurl').value;
+    const llmModel = document.getElementById('inputLLMmodel').value;
+
+    // Store the values in local storage if value is set
+    if (llmUrl) {
+        localStorage.setItem('LLMURL', llmUrl);
+    }
+    if (llmModel) {
+        localStorage.setItem('LLMMODEL', llmModel);
+    }
+});
+
+// Reset stored values when reset button is clicked
+document.getElementById('btnLLMReset').addEventListener('click', function() {
+    alert('Reset stored custom LLM settings');
+    document.getElementById('inputLLMurl').value = "";
+    localStorage.setItem('LLMURL', "");
+
+    document.getElementById('inputLLMmodel').value = "";
+    localStorage.setItem('LLMMODEL', "");
 });
 
 document.getElementById('inputForm').addEventListener('submit', function(event) {

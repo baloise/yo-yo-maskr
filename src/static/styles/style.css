@@ -36,11 +36,7 @@ footer {
     white-space: pre-wrap; /* Preserve whitespace */
 }
 
-#LLMInput {
-    display: none; /* Hide by default */
-}
-
-#LLMcustomLabel {
+#LLMcustomLabel, #LLMReset, #LLMInput {
     display: none; /* Hide by default */
 }
 
