@@ -43,12 +43,12 @@ async def mask(request: MaskRequest):
                 request.llmModel = OLLAMA_MODEL
 
             llm_entities = llm_find_entities(text=request.text, base_url=request.llmURL, model=request.llmModel)
-            return {"original_text": request.text, "entities": llm_entities['replace_dict'], "anonymized_text": llm_entities['text']}
+            return {"original_text": request.text.strip().replace('"', ''), "entities": llm_entities['replace_dict'], "anonymized_text": llm_entities['text'].strip().replace('"', '')}
         case BackendType.NER:
             spacy_entities = ano.find_entities(request.text)
-            return {"original_text": request.text, "entities": spacy_entities['replace_dict'], "anonymized_text": spacy_entities['text']}
+            return {"original_text": request.text.strip().replace('"', ''), "entities": spacy_entities['replace_dict'], "anonymized_text": spacy_entities['text'].strip().replace('"', '')}
         case BackendType.REG:
             regex_entities = reg_find_entities(request.text)
-            return {"original_text": request.text, "entities": regex_entities['replace_dict'], "anonymized_text": regex_entities['text']}
+            return {"original_text": request.text.strip().replace('"', ''), "entities": regex_entities['replace_dict'], "anonymized_text": regex_entities['text'].strip().replace('"', '')}
         case _:
             return {"original_text": "Invalid backend type"}

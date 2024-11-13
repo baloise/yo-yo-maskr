@@ -13,4 +13,4 @@ class MaskRequest(BaseModel):
 @router.post("/demask", response_class=JSONResponse, include_in_schema=True)
 async def mask(request: MaskRequest):
     deanontext = revert_replacements(request.text, request.entities)
-    return {"deanonymized_text": deanontext}
+    return {"deanonymized_text": deanontext.strip().replace('"', '')}
