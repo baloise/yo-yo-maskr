@@ -1,6 +1,8 @@
 document.getElementById('inputForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
+    document.getElementById('loading-spinner').style.display = 'flex';
+
     const inputData = document.getElementById('inputData').value;
     const inputDataEntities = JSON.parse(document.getElementById('responseFieldEntities').value);
 
@@ -25,6 +27,8 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
         // Display the response in the textarea
         document.getElementById('responseFieldText').value = inputData; // Format the JSON response
         document.getElementById('responseFieldDeanonText').value = JSON.stringify(text.deanonymized_text, null, 2); // Format the JSON response
+
+        document.getElementById('loading-spinner').style.display = 'none';
         
     })
     .catch((error) => {
