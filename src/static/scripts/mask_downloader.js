@@ -16,8 +16,10 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
     linkNT.href = URL.createObjectURL(blobNewText);
     linkNT.download = 'yoyo-anonymizedText.txt'; // Specify the file name
     
-    linkE.click();
-    URL.revokeObjectURL(linkE.href);
+    setTimeout(function() {
+        linkE.click();
+        URL.revokeObjectURL(linkE.href);
+    }, 50);
 
     setTimeout(function() {
         linkNT.click();
