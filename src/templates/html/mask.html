@@ -28,7 +28,7 @@
             <div class="flex-item">
                 <form id="inputForm">
                     <textarea class="default-textarea" type="text" id="inputData" placeholder="Enter text to anonymize or load text from a file" required></textarea>
-                    <div class="flex-container-row">
+                    <div class="flex-container">
                         <div class="flex-item">
                             <select id="backendType" name="backendType" required>
                                 <option value="REG">REG</option>
@@ -36,10 +36,19 @@
                                 <option value="NER">NER</option>
                             </select>
                         </div>
+                        <label class="flex-item checkbox-label" id="LLMcustomLabel"><input type="checkbox" id="LLMcustom" name="LLMcustom">use custom settings</label>
+                        <div id="LLMInput" class="flex-container">
+                            <div class="flex-item">
+                                <input type="text" name="LLMURL" id="inputLLMurl" placeholder="e.g.: http://localhost:11434"></input>
+                            </div>
+                            <div class="flex-item">
+                                <input type="text" name="LLMMODEL" id="inputLLMmodel" placeholder="e.g.: llama3.2:latest"></input>
+                            </div>
+                        </div>
                         <div class="flex-item">
                             <input type="submit" value="Submit">
                         </div>
-                    </div>  
+                    </div>
                 </form>
             </div>
 
