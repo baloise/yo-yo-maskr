@@ -108,3 +108,18 @@ footer {
     text-decoration: none;
     color: var(--link-color);
 }
+
+#loading-spinner {
+    display: none; /* Initially hidden */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #000000;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

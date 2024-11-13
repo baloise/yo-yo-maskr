@@ -69,6 +69,8 @@ document.getElementById('btnLLMReset').addEventListener('click', function() {
 document.getElementById('inputForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
+    document.getElementById('loading-spinner').style.display = 'flex';
+
     const inputData = document.getElementById('inputData').value;
     const backendType = document.getElementById('backendType').value;
     const inputLLMurl = document.getElementById('inputLLMurl').value;
@@ -94,8 +96,10 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
     .then(text => {
         // Display the response in the textarea
         document.getElementById('responseFieldText').value = JSON.stringify(text.original_text, null, 2); // Format the JSON response
-        document.getElementById('responseFieldEntities').value = JSON.stringify(text.entities, null, 2); // Format the JSON response
-        document.getElementById('responseFieldAnonText').value = JSON.stringify(text.anonymized_text, null, 2); // Format the string response
+        document.getElementById('responseFieldEntities').value = JSON.stringify(text.entities, null, 2);
+        document.getElementById('responseFieldAnonText').value = JSON.stringify(text.anonymized_text, null, 2);
+
+        document.getElementById('loading-spinner').style.display = 'none';
     })
     .catch((error) => {
         console.error('Error:', error); // Handle any errors
