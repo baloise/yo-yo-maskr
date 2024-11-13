@@ -11,12 +11,14 @@ EXPOSE 8000
 # set poetry environment variables
 ARG POETRY_FLAGS="--only main"
 ARG LOAD_NER_MODELS="False"
+ARG HOST_FLAVOR="default"
 
 # set default environment variables
 ENV OLLAMA_BASE_URL=http://localhost:11434 \
     OLLAMA_MODEL=llama3.2:latest \
     DEBIAN_FRONTEND=noninteractive \
-    HTTPX_CLIENT_VERIFY=
+    HTTPX_CLIENT_VERIFY= \
+    HOST_FLAVOR=$HOST_FLAVOR
 
 # add app src
 COPY . /app/
