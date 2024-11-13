@@ -1,3 +1,4 @@
+// shows/hides checkbox when LLM is selected
 document.getElementById('backendType').addEventListener('change', function() {
     var llmInputCheckbox = document.getElementById('LLMcustomLabel');
     if (this.value === 'LLM') {
@@ -7,12 +8,44 @@ document.getElementById('backendType').addEventListener('change', function() {
     }
 });
 
+// shows/hides custom input fields when checkbox is checked
 document.getElementById('LLMcustom').addEventListener('change', function() {
     var llmInputDiv = document.getElementById('LLMInput'); 
     if (this.checked === true) {
         llmInputDiv.style.display = 'flex'; // Show the LLMInput div
     } else {
         llmInputDiv.style.display = 'none'; // Hide the LLMInput div
+    }
+});
+
+// Load values from local storage when checkbox is true
+document.getElementById('LLMcustom').addEventListener('change', function() {
+    const llmUrl = localStorage.getItem('LLMURL');
+    const llmModel = localStorage.getItem('LLMMODEL');
+
+    // Set the input fields if values exist
+    if (llmUrl) {
+        document.getElementById('inputLLMurl').value = llmUrl;
+    }
+    if (llmModel) {
+        document.getElementById('inputLLMmodel').value = llmModel;
+    }
+});
+
+// Store values in local storage when form is submitted
+document.getElementById('inputForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get the values from the input fields
+    const llmUrl = document.getElementById('inputLLMurl').value;
+    const llmModel = document.getElementById('inputLLMmodel').value;
+
+    // Store the values in local storage if value is set
+    if (llmUrl) {
+        localStorage.setItem('LLMURL', llmUrl);
+    }
+    if (llmModel) {
+        localStorage.setItem('LLMMODEL', llmModel);
     }
 });
 
