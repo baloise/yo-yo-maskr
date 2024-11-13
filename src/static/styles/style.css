@@ -36,6 +36,14 @@ footer {
     white-space: pre-wrap; /* Preserve whitespace */
 }
 
+#LLMInput {
+    display: none; /* Hide by default */
+}
+
+#LLMcustomLabel {
+    display: none; /* Hide by default */
+}
+
 .flex-container {
     display: flex; /* Use flexbox to align items */
     justify-content: center; /* Center the buttons horizontally */
@@ -94,4 +102,8 @@ footer {
     .button-container {
         flex-direction: column; /* Stack items vertically */
     }
+}
+
+.checkbox-label {
+    font-size: 14px;      /* Font size */
 }

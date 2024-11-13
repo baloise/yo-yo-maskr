@@ -76,7 +76,6 @@ He also has an AHV number, which is 756.1234.5678.90".
 Text to anonymize: {text}   
 """
 
-
 def find_entities(text, model=OLLAMA_MODEL, temperature=0.1, template=TEMPLATE,
                   base_url=OLLAMA_BASE_URL, unprettify=True, raw=False):
     """
@@ -89,8 +88,7 @@ def find_entities(text, model=OLLAMA_MODEL, temperature=0.1, template=TEMPLATE,
     :param raw:
     :return:
     """
-    
-    
+        
     prompt = ChatPromptTemplate.from_template(template)
     model = OllamaLLM(model=model, temperature=temperature, base_url=base_url, client_kwargs={"verify": os.getenv("HTTPX_CLIENT_VERIFY", True)})
     chain = prompt | model
