@@ -26,12 +26,16 @@ document.getElementById('LLMcustom').addEventListener('change', function() {
     const llmUrl = localStorage.getItem('LLMURL');
     const llmModel = localStorage.getItem('LLMMODEL');
 
-    // Set the input fields if values exist
-    if (llmUrl) {
-        document.getElementById('inputLLMurl').value = llmUrl;
-    }
-    if (llmModel) {
-        document.getElementById('inputLLMmodel').value = llmModel;
+    if (this.checked === true) {
+        if (llmUrl) {
+            document.getElementById('inputLLMurl').value = llmUrl;
+        }
+        if (llmModel) {
+            document.getElementById('inputLLMmodel').value = llmModel;
+        }
+    } else {
+        document.getElementById('inputLLMurl').value = "";
+        document.getElementById('inputLLMmodel').value = "";
     }
 });
 
