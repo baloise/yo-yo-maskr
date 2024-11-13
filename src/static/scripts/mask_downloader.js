@@ -15,13 +15,12 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
     const linkNT = document.createElement('a');
     linkNT.href = URL.createObjectURL(blobNewText);
     linkNT.download = 'yoyo-anonymizedText.txt'; // Specify the file name
+    
+    linkE.click();
+    URL.revokeObjectURL(linkE.href);
 
     setTimeout(function() {
-        linkE.click();
+        linkNT.click();
+        URL.revokeObjectURL(linkNT.href)
     }, 50);
-    linkNT.click();
-
-    // Clean up and revoke the object URL
-    URL.revokeObjectURL(linkE.href);
-    URL.revokeObjectURL(linkNT.href)
 });
