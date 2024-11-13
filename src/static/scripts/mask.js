@@ -10,11 +10,14 @@ document.getElementById('backendType').addEventListener('change', function() {
 
 // shows/hides custom input fields when checkbox is checked
 document.getElementById('LLMcustom').addEventListener('change', function() {
-    var llmInputDiv = document.getElementById('LLMInput'); 
+    var llmInputDiv = document.getElementById('LLMInput');
+    var llmInputReset = document.getElementById('LLMReset');
     if (this.checked === true) {
         llmInputDiv.style.display = 'flex'; // Show the LLMInput div
+        llmInputReset.style.display = 'flex';
     } else {
         llmInputDiv.style.display = 'none'; // Hide the LLMInput div
+        llmInputReset.style.display = 'none';
     }
 });
 
@@ -47,6 +50,16 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
     if (llmModel) {
         localStorage.setItem('LLMMODEL', llmModel);
     }
+});
+
+// Reset stored values when reset button is clicked
+document.getElementById('btnLLMReset').addEventListener('click', function() {
+    alert('Reset stored custom LLM settings');
+    document.getElementById('inputLLMurl').value = "";
+    localStorage.setItem('LLMURL', "");
+
+    document.getElementById('inputLLMmodel').value = "";
+    localStorage.setItem('LLMMODEL', "");
 });
 
 document.getElementById('inputForm').addEventListener('submit', function(event) {
