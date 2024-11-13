@@ -107,3 +107,8 @@ footer {
 .checkbox-label {
     font-size: 14px;      /* Font size */
 }
+
+.url-nounderline {
+    text-decoration: none;
+    color: var(--link-color);
+}
