@@ -4,7 +4,11 @@ document.getElementById('backendType').addEventListener('change', function() {
     if (this.value === 'LLM') {
         llmInputCheckbox.style.display = 'flex';
     } else {
+        var llmInputDiv = document.getElementById('LLMInput');
+        var llmInputReset = document.getElementById('LLMReset');
         llmInputCheckbox.style.display = 'none';
+        llmInputDiv.style.display = 'none'; // Hide the LLMInput div
+        llmInputReset.style.display = 'none';
     }
 });
 
