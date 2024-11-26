@@ -62,13 +62,12 @@ dev: $(INSTALL_STAMP)
 
 # Run target to execute the application for production
 run: $(INSTALL_STAMP)
-#	$(POETRY) run gunicorn src.app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker
 	@echo "default mode"
-	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000
+	$(POETRY) run uvicorn src.app:app --host 0.0.0.0 --port 8000 --workers 4
 
 runos: $(INSTALL_STAMP)
 	@echo "openshift mode"
-	/home/anon/.local/bin/poetry run uvicorn src.app:app --host 0.0.0.0 --port 8000
+	/home/anon/.local/bin/poetry run uvicorn src.app:app --host 0.0.0.0 --port 8000 --workers 4
 
 loadModels: $(INSTALL_STAMP)
 	$(POETRY) run python src/utils/ano_spacy.py loadModels
