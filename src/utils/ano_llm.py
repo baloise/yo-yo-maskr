@@ -100,6 +100,8 @@ def find_entities(text, model=OLLAMA_MODEL, temperature=0.1, template=TEMPLATE,
        return result
     result = {k: {'matches': (m:=sorted(list(set(v)), key=len, reverse=True)), 'replacement': m[0]}
               for k, v in json.loads(result.strip()).items() if len(v) > 0}
+    result = {k: {'matches': m, 'replacement': v.get('replacement')} for k, v in result.items()
+              if len(m:=[i for i in v.get('matches') if text.find(i) >= 0]) > 0}
     for k, v in result.items():
         text = text.replace(v.get('replacement'), k)
     return {'text': text, 'replace_dict': result}
