@@ -1,28 +1,28 @@
 document.getElementById('downloadBtn').addEventListener('click', function() {
-    // Get the content of the textarea
-    const foundEntities = document.getElementById('responseFieldEntities').value;
-    const newText = document.getElementById('responseFieldAnonText').value;
 
-    // Create a Blob from the textarea content
-    const blobEntities = new Blob([foundEntities], { type: 'application/json' });
-    const blobNewText = new Blob([newText], { type: 'text/plain' });
-
-    // Create a link element
-    const linkE = document.createElement('a');
-    linkE.href = URL.createObjectURL(blobEntities);
-    linkE.download = 'yoyo-entities.json'; // Specify the file name
-
-    const linkNT = document.createElement('a');
-    linkNT.href = URL.createObjectURL(blobNewText);
-    linkNT.download = 'yoyo-anonymizedText.txt'; // Specify the file name
+    const contents = [
+        { content: document.getElementById('responseFieldEntities').value, name: 'yoyo-entities.json', type: 'application/json' },
+        { content: document.getElementById('responseFieldAnonText').value, name: 'yoyo-anonymizedText.txt', type: 'text/plain' },
+    ];
     
-    setTimeout(function() {
-        linkE.click();
-        URL.revokeObjectURL(linkE.href);
-    }, 50);
+    // Download files
+    async function downloadFiles(files) {
+        for (const file of files) {
+            const blob = new Blob([file.content], { type: file.type });
+            const url = window.URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            
+            window.URL.revokeObjectURL(url);
 
-    setTimeout(function() {
-        linkNT.click();
-        URL.revokeObjectURL(linkNT.href)
-    }, 50);
+            await new Promise(resolve => setTimeout(resolve, 100));
+        };
+    }
+
+    downloadFiles(contents);
 });

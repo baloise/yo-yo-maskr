@@ -1,18 +1,27 @@
 document.getElementById('downloadBtnDemask').addEventListener('click', function() {
-    // Get the content of the textarea
-    const Text = document.getElementById('responseFieldDeanonText').value;
 
-    // Create a Blob from the textarea content
-    const blobText = new Blob([Text], { type: 'text/plain' });
+    const contents = [
+        { content: document.getElementById('responseFieldDeanonText').value, name: 'yoyo-text.txt', type: 'text/plain' },
+    ];
+    
+    // Download files
+    async function downloadFiles(files) {
+        for (const file of files) {
+            const blob = new Blob([file.content], { type: file.type });
+            const url = window.URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            
+            window.URL.revokeObjectURL(url);
 
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blobText);
-    link.download = 'yoyo-text.txt'; // Specify the file name
-
-    // Programmatically click the link to trigger the download
-    link.click();
-
-    // Clean up and revoke the object URL
-    URL.revokeObjectURL(link.href);
+            await new Promise(resolve => setTimeout(resolve, 100));
+        };
+    }
+    
+    downloadFiles(contents);
 });
