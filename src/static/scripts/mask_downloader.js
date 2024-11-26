@@ -1,7 +1,7 @@
 document.getElementById('downloadBtn').addEventListener('click', function() {
 
     const contents = [
-        { content: document.getElementById('responseFieldEntities').value, name: 'yoyo-entities.json', type: 'application/json' },
+        { content: document.getElementById('responseFieldEntities').value, name: 'yoyo-entities.json', type: 'text/json' }, // changing type from 'application/json' to 'text/json' to avoid download issues
         { content: document.getElementById('responseFieldAnonText').value, name: 'yoyo-anonymizedText.txt', type: 'text/plain' },
     ];
     
