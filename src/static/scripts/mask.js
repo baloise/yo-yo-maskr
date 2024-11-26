@@ -6,9 +6,9 @@ document.getElementById('backendType').addEventListener('change', function() {
     } else {
         var llmInputDiv = document.getElementById('LLMInput');
         var llmInputReset = document.getElementById('LLMReset');
-        llmInputCheckbox.style.display = 'none';
+        llmInputCheckbox.style.display = 'none'; // Hide the LLMcustomLabel div
         llmInputDiv.style.display = 'none'; // Hide the LLMInput div
-        llmInputReset.style.display = 'none';
+        llmInputReset.style.display = 'none'; // Hide the LLMReset div
     }
 });
 
@@ -18,10 +18,10 @@ document.getElementById('LLMcustom').addEventListener('change', function() {
     var llmInputReset = document.getElementById('LLMReset');
     if (this.checked === true) {
         llmInputDiv.style.display = 'flex'; // Show the LLMInput div
-        llmInputReset.style.display = 'flex';
+        llmInputReset.style.display = 'flex'; // Show the LLMReset div
     } else {
         llmInputDiv.style.display = 'none'; // Hide the LLMInput div
-        llmInputReset.style.display = 'none';
+        llmInputReset.style.display = 'none'; // Hide the LLMReset div
     }
 });
 
@@ -73,15 +73,13 @@ document.getElementById('btnLLMReset').addEventListener('click', function() {
 document.getElementById('inputForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    document.getElementById('loading-spinner').style.display = 'flex';
-
+    document.getElementById('loading-spinner').style.display = 'flex'; // Show the loading spinner
     const inputData = document.getElementById('inputData').value;
     const backendType = document.getElementById('backendType').value;
     const inputLLMurl = document.getElementById('inputLLMurl').value;
     const inputLLMmodel = document.getElementById('inputLLMmodel').value;
     
-    // Use a relative URL for the API endpoint
-    const apiEndpoint = '/api/mask'; // Relative URL
+    const apiEndpoint = '/api/mask'; // Set API endpoint
 
     // Send a POST request to the API
     fetch(apiEndpoint, {
@@ -89,25 +87,25 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: inputData, "backendType": backendType, llmURL: inputLLMurl, llmModel: inputLLMmodel}), // Send the input text as JSON
+        body: JSON.stringify({ text: inputData, "backendType": backendType, llmURL: inputLLMurl, llmModel: inputLLMmodel}),
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json(); // Parse the JSON response
+        return response.json();
     })
     .then(text => {
-        // Display the response in the textarea
-        document.getElementById('responseFieldText').value = JSON.stringify(text.original_text, null, 2); // Format the JSON response
-        document.getElementById('responseFieldEntities').value = JSON.stringify(text.entities, null, 2);
-        document.getElementById('responseFieldAnonText').value = JSON.stringify(text.anonymized_text, null, 2);
 
-        document.getElementById('loading-spinner').style.display = 'none';
+        // Display the response in the textarea, no JSON formatting for text
+        document.getElementById('responseFieldText').value = text.original_text;
+        document.getElementById('responseFieldEntities').value = JSON.stringify(text.entities, null, 2);
+        document.getElementById('responseFieldAnonText').value = text.anonymized_text;
+
+        document.getElementById('loading-spinner').style.display = 'none'; // Hide the loading spinner
     })
     .catch((error) => {
         console.error('Error:', error); // Handle any errors
-        // Optionally display the error in the textarea
-        document.getElementById('responseFieldText').value = 'Error: ' + error.message + '\nText: ' + inputData;
+        document.getElementById('responseFieldText').value = 'Error: ' + error.message + '\nText: ' + inputData; // display the error in the textarea
     });
 });

@@ -1,13 +1,12 @@
 document.getElementById('inputForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    document.getElementById('loading-spinner').style.display = 'flex';
+    document.getElementById('loading-spinner').style.display = 'flex'; // Show the loading spinner
 
     const inputData = document.getElementById('inputData').value;
     const inputDataEntities = JSON.parse(document.getElementById('responseFieldEntities').value);
 
-    // Use a relative URL for the API endpoint
-    const apiEndpoint = '/api/demask'; // Relative URL
+    const apiEndpoint = '/api/demask'; // Set API endpoint
 
     // Send a POST request to the API
     fetch(apiEndpoint, {
@@ -15,7 +14,7 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: inputData, entities: inputDataEntities}), // Send the input text as JSON
+        body: JSON.stringify({ text: inputData, entities: inputDataEntities}),
     })
     .then(response => {
         if (!response.ok) {
@@ -25,10 +24,10 @@ document.getElementById('inputForm').addEventListener('submit', function(event) 
     })
     .then(text => {
         // Display the response in the textarea
-        document.getElementById('responseFieldText').value = inputData; // Format the JSON response
-        document.getElementById('responseFieldDeanonText').value = JSON.stringify(text.deanonymized_text, null, 2); // Format the JSON response
+        document.getElementById('responseFieldText').value = inputData;
+        document.getElementById('responseFieldDeanonText').value = text.deanonymized_text;
 
-        document.getElementById('loading-spinner').style.display = 'none';
+        document.getElementById('loading-spinner').style.display = 'none'; // Hide the loading spinner
         
     })
     .catch((error) => {
